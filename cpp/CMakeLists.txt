@@ -82,12 +82,9 @@ if(CPPUNIT_FOUND)
 else()
     message(WARNING "Not building testrunner, because CppUnit is missing")
 endif()
-FILE(GLOB_RECURSE header_files     
-    "./core/src/*.h"
-    "./core/src/*.hh"
-)
-INSTALL(FILES  ${header_files} DESTINATION include/zxing)
-INSTALL(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/libzxing.so DESTINATION lib)  
 
+INSTALL(DIRECTORY ./core/src/ DESTINATION include
+          FILES_MATCHING PATTERN "*.h")
+INSTALL(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/libzxing.so DESTINATION lib)  
 INSTALL(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/zxing DESTINATION bin) 
 INSTALL(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/testrunner DESTINATION bin)  
